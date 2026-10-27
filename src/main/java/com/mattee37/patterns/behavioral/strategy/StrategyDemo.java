@@ -4,7 +4,7 @@ public class StrategyDemo {
     public static void main(String[] args) {
         System.out.println("=== Strategy Pattern ===\n");
 
-        var cart = new ShoppingCart();
+        ShoppingCart cart = new ShoppingCart();
 
         cart.setPaymentMethod(new CreditCardPayment("**** **** **** 1234"));
         cart.checkout(100);

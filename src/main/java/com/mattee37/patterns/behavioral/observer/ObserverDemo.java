@@ -4,11 +4,11 @@ public class ObserverDemo {
     public static void main(String[] args) {
         System.out.println("=== Observer Pattern ===\n");
 
-        var newsletter = new Newsletter();
+        Newsletter newsletter = new Newsletter();
 
-        var alice = new Subscriber("Alice");
-        var bob = new Subscriber("Bob");
-        var charlie = new Subscriber("Charlie");
+        Subscriber alice = new Subscriber("Alice");
+        Subscriber bob = new Subscriber("Bob");
+        Subscriber charlie = new Subscriber("Charlie");
 
         newsletter.subscribe(alice);
         newsletter.subscribe(bob);

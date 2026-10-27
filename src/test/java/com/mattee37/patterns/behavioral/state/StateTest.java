@@ -11,8 +11,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class StateTest {
 
     private static String capture(Runnable action) {
-        var buffer = new ByteArrayOutputStream();
-        var original = System.out;
+        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+        PrintStream original = System.out;
         try {
             System.setOut(new PrintStream(buffer, true, StandardCharsets.UTF_8));
             action.run();
@@ -24,7 +24,7 @@ class StateTest {
 
     @Test
     void transitionsBetweenStates() {
-        var player = new AudioPlayer();
+        AudioPlayer player = new AudioPlayer();
         assertInstanceOf(StoppedState.class, player.state());
 
         capture(() -> player.play());
@@ -42,9 +42,9 @@ class StateTest {
 
     @Test
     void invalidTransitionsKeepCurrentStateAndPrintMessage() {
-        var player = new AudioPlayer();
+        AudioPlayer player = new AudioPlayer();
 
-        var output = capture(() -> {
+        String output = capture(() -> {
             player.pause();
             player.stop();
         });
@@ -55,9 +55,9 @@ class StateTest {
 
     @Test
     void sequenceFromDemoMatchesExpectedMessages() {
-        var player = new AudioPlayer();
+        AudioPlayer player = new AudioPlayer();
 
-        var output = capture(() -> {
+        String output = capture(() -> {
             player.play();   // Stopped -> Playing
             player.play();   // already playing
             player.pause();  // Playing -> Paused

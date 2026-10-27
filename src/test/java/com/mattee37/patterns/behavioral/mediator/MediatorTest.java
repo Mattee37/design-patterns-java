@@ -37,10 +37,10 @@ class MediatorTest {
 
     @Test
     void broadcastReachesEveryUserExceptSender() {
-        var room = new ChatRoom();
-        var alice = new RecordingUser("Alice");
-        var bob = new RecordingUser("Bob");
-        var charlie = new RecordingUser("Charlie");
+        ChatRoom room = new ChatRoom();
+        RecordingUser alice = new RecordingUser("Alice");
+        RecordingUser bob = new RecordingUser("Bob");
+        RecordingUser charlie = new RecordingUser("Charlie");
         room.register(alice);
         room.register(bob);
         room.register(charlie);
@@ -54,9 +54,9 @@ class MediatorTest {
 
     @Test
     void chatUserSendReachesOthersThroughMediator() {
-        var room = new ChatRoom();
-        var alice = new ChatUser("Alice", room);
-        var bob = new RecordingUser("Bob");
+        ChatRoom room = new ChatRoom();
+        ChatUser alice = new ChatUser("Alice", room);
+        RecordingUser bob = new RecordingUser("Bob");
         room.register(alice);
         room.register(bob);
 

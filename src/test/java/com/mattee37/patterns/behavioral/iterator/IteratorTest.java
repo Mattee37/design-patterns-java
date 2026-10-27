@@ -3,6 +3,7 @@ package com.mattee37.patterns.behavioral.iterator;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -13,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class IteratorTest {
 
     private static NumberCollection sample() {
-        var collection = new NumberCollection();
+        NumberCollection collection = new NumberCollection();
         collection.add(10);
         collection.add(20);
         collection.add(30);
@@ -23,8 +24,8 @@ class IteratorTest {
 
     @Test
     void iteratesAllItemsInInsertionOrder() {
-        var iterator = sample().createIterator();
-        var items = new ArrayList<Integer>();
+        Iterator<Integer> iterator = sample().createIterator();
+        ArrayList<Integer> items = new ArrayList<Integer>();
         while (iterator.hasNext()) {
             items.add(iterator.next());
         }
@@ -34,20 +35,20 @@ class IteratorTest {
 
     @Test
     void eachIteratorStartsFresh() {
-        var collection = sample();
+        NumberCollection collection = sample();
 
-        var first = collection.createIterator();
+        Iterator<Integer> first = collection.createIterator();
         assertEquals(10, first.next());
         assertEquals(20, first.next());
 
-        var second = collection.createIterator();
+        Iterator<Integer> second = collection.createIterator();
         assertEquals(10, second.next());
         assertEquals(20, second.next());
     }
 
     @Test
     void hasNextIsFalseAfterExhaustion() {
-        var iterator = sample().createIterator();
+        Iterator<Integer> iterator = sample().createIterator();
         while (iterator.hasNext()) {
             iterator.next();
         }

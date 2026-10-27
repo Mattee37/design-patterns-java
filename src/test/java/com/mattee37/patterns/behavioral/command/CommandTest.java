@@ -8,8 +8,8 @@ class CommandTest {
 
     @Test
     void executeAppendsAndUndoRemovesLastWrite() {
-        var editor = new TextEditor();
-        var history = new CommandHistory();
+        TextEditor editor = new TextEditor();
+        CommandHistory history = new CommandHistory();
 
         history.execute(new WriteCommand(editor, "Hello"));
         assertEquals("Hello", editor.getContent());
@@ -29,8 +29,8 @@ class CommandTest {
 
     @Test
     void undoOnEmptyHistoryIsIgnored() {
-        var editor = new TextEditor();
-        var history = new CommandHistory();
+        TextEditor editor = new TextEditor();
+        CommandHistory history = new CommandHistory();
 
         history.execute(new WriteCommand(editor, "abc"));
         history.undo();

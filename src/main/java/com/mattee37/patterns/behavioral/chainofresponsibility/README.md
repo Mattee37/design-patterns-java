@@ -73,9 +73,9 @@ flowchart LR
 ## Chain Setup
 
 ```java
-var basic = new BasicSupport();
-var technical = new TechnicalSupport();
-var billing = new BillingSupport();
+BasicSupport basic = new BasicSupport();
+TechnicalSupport technical = new TechnicalSupport();
+BillingSupport billing = new BillingSupport();
 
 basic.setNext(technical).setNext(billing);
 ```

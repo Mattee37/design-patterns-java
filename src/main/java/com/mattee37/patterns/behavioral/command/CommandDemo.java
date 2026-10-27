@@ -4,8 +4,8 @@ public class CommandDemo {
     public static void main(String[] args) {
         System.out.println("=== Command Pattern ===\n");
 
-        var editor = new TextEditor();
-        var history = new CommandHistory();
+        TextEditor editor = new TextEditor();
+        CommandHistory history = new CommandHistory();
 
         history.execute(new WriteCommand(editor, "Hello"));
         editor.print();

@@ -4,7 +4,7 @@ public class StateDemo {
     public static void main(String[] args) {
         System.out.println("=== State Pattern ===\n");
 
-        var player = new AudioPlayer();
+        AudioPlayer player = new AudioPlayer();
 
         player.play();
         player.play();

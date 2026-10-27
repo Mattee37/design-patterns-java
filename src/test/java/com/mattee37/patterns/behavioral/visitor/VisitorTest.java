@@ -12,8 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class VisitorTest {
 
     private static String capture(Runnable action) {
-        var buffer = new ByteArrayOutputStream();
-        var original = System.out;
+        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+        PrintStream original = System.out;
         try {
             System.setOut(new PrintStream(buffer, true, StandardCharsets.UTF_8));
             action.run();
@@ -27,7 +27,7 @@ class VisitorTest {
     void areaCalculatorDispatchesPerShapeType() {
         List<Shape> shapes = List.of(new Circle(5), new Rectangle(4, 6), new Circle(3));
 
-        var output = capture(() -> shapes.forEach(shape -> shape.accept(new AreaCalculator())));
+        String output = capture(() -> shapes.forEach(shape -> shape.accept(new AreaCalculator())));
 
         assertTrue(output.contains("Circle area: 78.54"));
         assertTrue(output.contains("Rectangle area: 24"));
@@ -38,7 +38,7 @@ class VisitorTest {
     void drawVisitorDispatchesPerShapeType() {
         List<Shape> shapes = List.of(new Circle(5), new Rectangle(4, 6));
 
-        var output = capture(() -> shapes.forEach(shape -> shape.accept(new DrawVisitor())));
+        String output = capture(() -> shapes.forEach(shape -> shape.accept(new DrawVisitor())));
 
         assertTrue(output.contains("Drawing circle with radius 5"));
         assertTrue(output.contains("Drawing rectangle 4x6"));

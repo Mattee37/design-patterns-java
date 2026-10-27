@@ -11,8 +11,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ChainOfResponsibilityTest {
 
     private static String capture(Runnable action) {
-        var original = System.out;
-        var buffer = new ByteArrayOutputStream();
+        PrintStream original = System.out;
+        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
         System.setOut(new PrintStream(buffer, true, StandardCharsets.UTF_8));
         try {
             action.run();
@@ -28,9 +28,9 @@ class ChainOfResponsibilityTest {
 
     @Test
     void eachRequestIsHandledByMatchingHandler() {
-        var basic = new BasicSupport();
-        var technical = new TechnicalSupport();
-        var billing = new BillingSupport();
+        BasicSupport basic = new BasicSupport();
+        TechnicalSupport technical = new TechnicalSupport();
+        BillingSupport billing = new BillingSupport();
         basic.setNext(technical).setNext(billing);
 
         assertEquals("📞 Basic Support: \"msg\"", capture(() -> basic.handle(request(SupportRequest.Type.BASIC))));
@@ -41,7 +41,7 @@ class ChainOfResponsibilityTest {
     @Test
     void unhandledRequestReachesEndOfChain() {
         // TECHNICAL request with no next handler at all
-        var basic = new BasicSupport();
+        BasicSupport basic = new BasicSupport();
 
         assertEquals("❌ No handler available for this request",
                 capture(() -> basic.handle(request(SupportRequest.Type.TECHNICAL))));
@@ -49,8 +49,8 @@ class ChainOfResponsibilityTest {
 
     @Test
     void setNextReturnsTheLinkedHandler() {
-        var basic = new BasicSupport();
-        var technical = new TechnicalSupport();
+        BasicSupport basic = new BasicSupport();
+        TechnicalSupport technical = new TechnicalSupport();
 
         assertEquals(technical, basic.setNext(technical));
     }

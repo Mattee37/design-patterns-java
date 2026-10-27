@@ -12,7 +12,7 @@ public class CommandHistory {
     }
 
     public void undo() {
-        var command = history.poll();
+        Command command = history.poll();
         if (command != null) {
             command.undo();
         }

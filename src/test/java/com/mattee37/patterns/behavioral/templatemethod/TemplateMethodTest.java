@@ -12,8 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class TemplateMethodTest {
 
     private static String capture(Runnable action) {
-        var buffer = new ByteArrayOutputStream();
-        var original = System.out;
+        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+        PrintStream original = System.out;
         try {
             System.setOut(new PrintStream(buffer, true, StandardCharsets.UTF_8));
             action.run();
@@ -25,7 +25,7 @@ class TemplateMethodTest {
 
     @Test
     void pdfRunsAllStepsInOrder() {
-        var output = capture(() -> new PDFReport().generate());
+        String output = capture(() -> new PDFReport().generate());
 
         assertOrder(output, List.of(
                 "Fetching data from database",
@@ -36,7 +36,7 @@ class TemplateMethodTest {
 
     @Test
     void excelOverridesHookButKeepsStructure() {
-        var output = capture(() -> new ExcelReport().generate());
+        String output = capture(() -> new ExcelReport().generate());
 
         assertOrder(output, List.of(
                 "Fetching data from API",
@@ -48,7 +48,7 @@ class TemplateMethodTest {
 
     private static void assertOrder(String output, List<String> steps) {
         int previous = -1;
-        for (var step : steps) {
+        for (String step : steps) {
             int index = output.indexOf(step);
             assertTrue(index > previous, "missing or out of order: " + step);
             previous = index;

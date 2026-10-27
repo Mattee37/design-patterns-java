@@ -12,8 +12,8 @@ class MementoTest {
 
     @Test
     void restoresPreviouslySavedStates() {
-        var editor = new Editor();
-        var history = new History();
+        Editor editor = new Editor();
+        History history = new History();
 
         editor.type("Hello");
         history.push(editor.save());
@@ -31,8 +31,8 @@ class MementoTest {
 
     @Test
     void poppingEmptyHistoryIsANoOp() {
-        var editor = new Editor();
-        var history = new History();
+        Editor editor = new Editor();
+        History history = new History();
         editor.type("data");
 
         assertTrue(history.pop().isEmpty());
@@ -41,7 +41,7 @@ class MementoTest {
 
     @Test
     void mementoExposesSnapshotAndIsoDate() {
-        var editor = new Editor();
+        Editor editor = new Editor();
         editor.type("Hello");
         Memento memento = editor.save();
 

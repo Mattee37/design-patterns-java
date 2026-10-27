@@ -4,8 +4,8 @@ public class MementoDemo {
     public static void main(String[] args) {
         System.out.println("=== Memento Pattern ===\n");
 
-        var editor = new Editor();
-        var history = new History();
+        Editor editor = new Editor();
+        History history = new History();
 
         editor.type("Hello");
         history.push(editor.save());

@@ -4,11 +4,11 @@ public class MediatorDemo {
     public static void main(String[] args) {
         System.out.println("=== Mediator Pattern ===\n");
 
-        var chatRoom = new ChatRoom();
+        ChatRoom chatRoom = new ChatRoom();
 
-        var alice = new ChatUser("Alice", chatRoom);
-        var bob = new ChatUser("Bob", chatRoom);
-        var charlie = new ChatUser("Charlie", chatRoom);
+        ChatUser alice = new ChatUser("Alice", chatRoom);
+        ChatUser bob = new ChatUser("Bob", chatRoom);
+        ChatUser charlie = new ChatUser("Charlie", chatRoom);
 
         chatRoom.register(alice);
         chatRoom.register(bob);
