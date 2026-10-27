@@ -1,0 +1,33 @@
+@startuml
+interface Shape {
+  +accept(visitor: ShapeVisitor): void
+}
+interface ShapeVisitor {
+  +visitCircle(circle: Circle): void
+  +visitRectangle(rectangle: Rectangle): void
+}
+class Circle <<record>> {
+  +radius: int
+  +accept(visitor: ShapeVisitor): void
+}
+class Rectangle <<record>> {
+  +width: int
+  +height: int
+  +accept(visitor: ShapeVisitor): void
+}
+class AreaCalculator {
+  +visitCircle(circle: Circle): void
+  +visitRectangle(rectangle: Rectangle): void
+}
+class DrawVisitor {
+  +visitCircle(circle: Circle): void
+  +visitRectangle(rectangle: Rectangle): void
+}
+Shape <|.. Circle : permits
+Shape <|.. Rectangle : permits
+ShapeVisitor <|.. AreaCalculator
+ShapeVisitor <|.. DrawVisitor
+Shape ..> ShapeVisitor : accept(visitor)
+Circle ..> ShapeVisitor : visitCircle(this)
+Rectangle ..> ShapeVisitor : visitRectangle(this)
+@enduml

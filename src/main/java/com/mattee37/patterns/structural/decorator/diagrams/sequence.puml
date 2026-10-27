@@ -1,0 +1,41 @@
+@startuml
+participant "DecoratorDemo (Client)" as client
+participant "Coffee (whipped\nsugar+milk)" as whipped
+participant "SugarDecorator" as sugar
+participant "MilkDecorator" as milk
+participant "SimpleCoffee" as simple
+
+client -> whipped : cost()
+activate whipped
+whipped -> sugar : cost()
+activate sugar
+sugar -> milk : cost()
+activate milk
+milk -> simple : cost()
+activate simple
+simple --> milk : 2.0
+deactivate simple
+milk --> sugar : 2.5
+deactivate milk
+sugar --> whipped : 2.75
+deactivate sugar
+whipped --> client : 3.5
+deactivate whipped
+
+client -> whipped : description()
+activate whipped
+whipped -> sugar : description()
+activate sugar
+sugar -> milk : description()
+activate milk
+milk -> simple : description()
+activate simple
+simple --> milk : "Coffee"
+deactivate simple
+milk --> sugar : "Coffee + Milk"
+deactivate milk
+sugar --> whipped : "Coffee + Milk + Sugar"
+deactivate sugar
+whipped --> client : "Coffee + Milk + Sugar + Whipped Cream"
+deactivate whipped
+@enduml

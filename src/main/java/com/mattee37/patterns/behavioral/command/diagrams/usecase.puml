@@ -1,0 +1,13 @@
+@startuml
+actor Client
+rectangle "Command Text Editor" {
+  (Execute command) as uc1
+  (Undo last command) as uc2
+  (Write text into editor) as uc3
+  (View editor content) as uc4
+}
+Client --> uc1
+Client --> uc2
+Client --> uc4
+uc1 ..> uc3 : <<include>>
+@enduml

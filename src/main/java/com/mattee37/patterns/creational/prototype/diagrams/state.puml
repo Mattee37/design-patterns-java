@@ -1,0 +1,11 @@
+@startuml
+title Document Lifecycle (Prototype Demo)
+
+[*] --> Template : new Document(title, content, author)
+Template --> Printed : print()
+Template --> Cloned : clone()
+Cloned --> Customized : set title / set content
+Customized --> Printed : print()
+Printed --> [*] : demo ends
+
+@enduml

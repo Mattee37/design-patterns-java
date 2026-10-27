@@ -1,0 +1,42 @@
+@startuml
+title Singleton Demo Flow
+
+participant "SingletonDemo" as demo
+participant "Logger" as logger
+
+demo -> logger : getInstance()
+activate logger
+logger -> logger : instance == null -> new Logger()
+logger --> demo : logger1
+deactivate logger
+
+demo -> logger : getInstance()
+activate logger
+logger -> logger : instance != null -> return cached
+logger --> demo : logger2 (same instance)
+deactivate logger
+
+demo -> logger : log("First message from logger1")
+activate logger
+logger -> logger : logs.add(entry)
+logger --> demo
+deactivate logger
+
+demo -> logger : log("Second message from logger2")
+activate logger
+logger -> logger : logs.add(entry)
+logger --> demo
+deactivate logger
+
+demo -> logger : log("Third message from logger1")
+activate logger
+logger -> logger : logs.add(entry)
+logger --> demo
+deactivate logger
+
+demo -> logger : getLogs()
+activate logger
+logger --> demo : List.copyOf(logs)
+deactivate logger
+
+@enduml

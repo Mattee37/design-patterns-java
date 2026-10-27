@@ -1,0 +1,16 @@
+@startuml
+[*] --> NoPaymentMethod
+NoPaymentMethod --> NoPaymentMethod : checkout(amount) / "No payment method selected"
+NoPaymentMethod --> CreditCardSelected : setPaymentMethod(new CreditCardPayment(...))
+NoPaymentMethod --> PayPalSelected : setPaymentMethod(new PayPalPayment(...))
+NoPaymentMethod --> CryptoSelected : setPaymentMethod(new CryptoPayment(...))
+CreditCardSelected --> CreditCardSelected : checkout(amount) / pay(amount)
+CreditCardSelected --> PayPalSelected : setPaymentMethod(new PayPalPayment(...))
+CreditCardSelected --> CryptoSelected : setPaymentMethod(new CryptoPayment(...))
+PayPalSelected --> PayPalSelected : checkout(amount) / pay(amount)
+PayPalSelected --> CreditCardSelected : setPaymentMethod(new CreditCardPayment(...))
+PayPalSelected --> CryptoSelected : setPaymentMethod(new CryptoPayment(...))
+CryptoSelected --> CryptoSelected : checkout(amount) / pay(amount)
+CryptoSelected --> CreditCardSelected : setPaymentMethod(new CreditCardPayment(...))
+CryptoSelected --> PayPalSelected : setPaymentMethod(new PayPalPayment(...))
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+[*] --> Fetching : generate()
+Fetching --> Processing : fetchData()
+Processing --> Formatting : processData()
+Formatting --> Exporting : formatReport() [hook]
+Exporting --> [*] : export()
+note right of Formatting
+  PDFReport uses the default
+  hook implementation;
+  ExcelReport overrides it
+end note
+@enduml

@@ -1,0 +1,35 @@
+@startuml
+participant "ChainOfResponsibilityDemo" as demo
+participant "BasicSupport" as basic
+participant "TechnicalSupport" as technical
+participant "BillingSupport" as billing
+
+demo -> basic : setNext(technical)
+basic --> demo : technical
+demo -> technical : setNext(billing)
+technical --> demo : billing
+
+demo -> basic : handle(BASIC request)
+activate basic
+note right of basic : type == BASIC, prints reply
+deactivate basic
+
+demo -> basic : handle(TECHNICAL request)
+activate basic
+basic -> technical : super.handle(request)
+activate technical
+note right of technical : type == TECHNICAL, prints reply
+deactivate technical
+deactivate basic
+
+demo -> basic : handle(BILLING request)
+activate basic
+basic -> technical : super.handle(request)
+activate technical
+technical -> billing : super.handle(request)
+activate billing
+note right of billing : type == BILLING, prints reply
+deactivate billing
+deactivate technical
+deactivate basic
+@enduml

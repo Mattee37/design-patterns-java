@@ -1,0 +1,44 @@
+@startuml
+interface MusicPlayer {
+  +setState(state: State): void
+  +play(): void
+  +pause(): void
+  +stop(): void
+}
+interface State {
+  +play(player: MusicPlayer): void
+  +pause(player: MusicPlayer): void
+  +stop(player: MusicPlayer): void
+}
+class AudioPlayer {
+  -state: State
+  +setState(state: State): void
+  +play(): void
+  +pause(): void
+  +stop(): void
+  +state(): State
+}
+class StoppedState {
+  +play(player: MusicPlayer): void
+  +pause(player: MusicPlayer): void
+  +stop(player: MusicPlayer): void
+}
+class PlayingState {
+  +play(player: MusicPlayer): void
+  +pause(player: MusicPlayer): void
+  +stop(player: MusicPlayer): void
+}
+class PausedState {
+  +play(player: MusicPlayer): void
+  +pause(player: MusicPlayer): void
+  +stop(player: MusicPlayer): void
+}
+MusicPlayer <|.. AudioPlayer
+AudioPlayer o-- "1" State : current state
+State <|.. StoppedState
+State <|.. PlayingState
+State <|.. PausedState
+StoppedState ..> MusicPlayer : setState(PlayingState)
+PlayingState ..> MusicPlayer : setState(PausedState / StoppedState)
+PausedState ..> MusicPlayer : setState(PlayingState / StoppedState)
+@enduml

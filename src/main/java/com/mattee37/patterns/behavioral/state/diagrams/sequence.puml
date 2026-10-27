@@ -1,0 +1,30 @@
+@startuml
+participant "StateDemo" as demo
+participant "AudioPlayer" as player
+participant "StoppedState" as stopped
+participant "PlayingState" as playing
+participant "PausedState" as paused
+
+demo -> player : new AudioPlayer() [state = StoppedState]
+demo -> player : play()
+player -> stopped : play(player)
+stopped -> player : setState(new PlayingState())
+demo -> player : play()
+player -> playing : play(player)
+note right : "Already playing"
+demo -> player : pause()
+player -> playing : pause(player)
+playing -> player : setState(new PausedState())
+demo -> player : play()
+player -> paused : play(player)
+paused -> player : setState(new PlayingState())
+demo -> player : stop()
+player -> playing : stop(player)
+playing -> player : setState(new StoppedState())
+demo -> player : pause()
+player -> stopped : pause(player)
+note right : "Already stopped"
+demo -> player : play()
+player -> stopped : play(player)
+stopped -> player : setState(new PlayingState())
+@enduml

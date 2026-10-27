@@ -1,0 +1,40 @@
+@startuml
+participant "MementoDemo" as demo
+participant "Editor" as editor
+participant "History" as history
+participant "EditorMemento" as memento
+
+demo -> editor : type("Hello")
+demo -> editor : save()
+activate editor
+editor -> memento : new EditorMemento("Hello", now)
+memento --> editor
+editor --> demo : Memento
+deactivate editor
+demo -> history : push(memento)
+
+demo -> editor : type(" World")
+demo -> editor : save()
+activate editor
+editor -> memento : new EditorMemento("Hello World", now)
+memento --> editor
+editor --> demo : Memento
+deactivate editor
+demo -> history : push(memento)
+
+demo -> editor : type("!!!")
+demo -> editor : getContent()
+editor --> demo : "Hello World!!!"
+
+demo -> history : pop()
+history --> demo : Optional[Memento("Hello World")]
+demo -> editor : restore(memento)
+demo -> editor : getContent()
+editor --> demo : "Hello World"
+
+demo -> history : pop()
+history --> demo : Optional[Memento("Hello")]
+demo -> editor : restore(memento)
+demo -> editor : getContent()
+editor --> demo : "Hello"
+@enduml

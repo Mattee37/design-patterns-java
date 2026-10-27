@@ -1,0 +1,45 @@
+@startuml
+title Abstract Factory Demo Flow
+
+participant "AbstractFactoryDemo" as demo
+participant "UIFactory" as factory
+participant "Button" as button
+participant "Input" as input
+
+demo -> factory : renderUI(new DarkThemeFactory())
+activate factory
+
+factory -> factory : createButton() -> DarkButton
+factory -> factory : createInput() -> DarkInput
+
+factory -> button : render()
+activate button
+button --> factory : "[Dark Button] -->"
+deactivate button
+
+factory -> input : render()
+activate input
+input --> factory : "[Dark Input] --> |_______|"
+deactivate input
+
+deactivate factory
+
+demo -> factory : renderUI(new LightThemeFactory())
+activate factory
+
+factory -> factory : createButton() -> LightButton
+factory -> factory : createInput() -> LightInput
+
+factory -> button : render()
+activate button
+button --> factory : "[Light Button] ()o"
+deactivate button
+
+factory -> input : render()
+activate input
+input --> factory : "[Light Input] ()o |_______|"
+deactivate input
+
+deactivate factory
+
+@enduml

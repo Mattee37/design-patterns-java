@@ -1,0 +1,43 @@
+@startuml
+interface Expression {
+  +interpret(context: Map<String, Double>): double
+}
+class NumberExpression <<record>> {
+  +value: double
+  +interpret(context: Map<String, Double>): double
+}
+class VariableExpression <<record>> {
+  +name: String
+  +interpret(context: Map<String, Double>): double
+}
+class AddExpression <<record>> {
+  +left: Expression
+  +right: Expression
+  +interpret(context: Map<String, Double>): double
+}
+class SubtractExpression <<record>> {
+  +left: Expression
+  +right: Expression
+  +interpret(context: Map<String, Double>): double
+}
+class MultiplyExpression <<record>> {
+  +left: Expression
+  +right: Expression
+  +interpret(context: Map<String, Double>): double
+}
+class DivideExpression <<record>> {
+  +left: Expression
+  +right: Expression
+  +interpret(context: Map<String, Double>): double
+}
+Expression <|.. NumberExpression : terminal
+Expression <|.. VariableExpression : terminal
+Expression <|.. AddExpression : non-terminal
+Expression <|.. SubtractExpression : non-terminal
+Expression <|.. MultiplyExpression : non-terminal
+Expression <|.. DivideExpression : non-terminal
+AddExpression *-- Expression : left, right
+SubtractExpression *-- Expression : left, right
+MultiplyExpression *-- Expression : left, right
+DivideExpression *-- Expression : left, right
+@enduml

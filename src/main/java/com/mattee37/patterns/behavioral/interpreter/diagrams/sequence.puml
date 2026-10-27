@@ -1,0 +1,30 @@
+@startuml
+participant "InterpreterDemo" as demo
+participant "MultiplyExpression" as mul
+participant "AddExpression" as add
+participant "VariableExpression" as vx
+participant "VariableExpression" as vy
+participant "NumberExpression" as two
+
+demo -> mul : interpret({x=10.0, y=5.0})
+activate mul
+mul -> add : interpret(context)
+activate add
+add -> vx : interpret(context)
+vx --> add : 10.0
+add -> vy : interpret(context)
+vy --> add : 5.0
+add --> mul : 15.0
+deactivate add
+mul -> two : interpret(context)
+two --> mul : 2.0
+mul --> demo : 30.0
+deactivate mul
+
+demo -> demo : context.put("x", 20.0)
+
+demo -> mul : interpret(context)
+activate mul
+mul --> demo : 50.0
+deactivate mul
+@enduml

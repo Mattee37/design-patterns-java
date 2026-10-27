@@ -78,3 +78,17 @@ Consider dependency injection as an alternative.
 ## Run
 
 Run `com.mattee37.patterns.creational.singleton.SingletonDemo#main`.
+
+## Diagrams
+
+### Class
+![Class diagram](diagrams/class.png)
+
+### State
+![State diagram](diagrams/state.png)
+
+### Sequence
+![Sequence diagram](diagrams/sequence.png)
+
+### Use Case
+![Use case diagram](diagrams/usecase.png)

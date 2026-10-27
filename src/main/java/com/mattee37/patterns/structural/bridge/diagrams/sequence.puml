@@ -1,0 +1,33 @@
+@startuml
+participant "BridgeDemo (Client)" as client
+participant "RemoteControl" as remote
+participant "TV" as tv
+
+client -> remote : new RemoteControl(tv)
+
+client -> remote : togglePower()
+activate remote
+remote -> tv : isEnabled()
+remote -> tv : enable()
+deactivate remote
+
+client -> remote : volumeUp()
+activate remote
+remote -> tv : getVolume()
+remote -> tv : setVolume(60)
+deactivate remote
+
+client -> remote : volumeUp()
+activate remote
+remote -> tv : getVolume()
+remote -> tv : setVolume(70)
+deactivate remote
+
+client -> remote : togglePower()
+activate remote
+remote -> tv : isEnabled()
+remote -> tv : disable()
+deactivate remote
+
+note over client, tv : Same RemoteControl drives a Radio the same way (bridge decouples abstraction from implementation)
+@enduml

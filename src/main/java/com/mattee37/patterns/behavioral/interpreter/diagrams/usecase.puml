@@ -1,0 +1,14 @@
+@startuml
+actor Client
+rectangle "Arithmetic Expression Interpreter" {
+  (Build expression tree) as uc1
+  (Interpret expression against context) as uc2
+  (Define variables in context) as uc3
+  (Reuse tree with updated context) as uc4
+}
+Client --> uc1
+Client --> uc2
+Client --> uc3
+Client --> uc4
+uc2 ..> uc3 : <<include>>
+@enduml

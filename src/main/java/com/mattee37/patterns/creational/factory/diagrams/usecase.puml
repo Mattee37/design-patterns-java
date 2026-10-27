@@ -1,0 +1,18 @@
+@startuml
+title Factory Pattern Use Cases
+
+actor Client
+
+rectangle "Vehicle Factory System" {
+  (Create car)
+  (Create motorcycle)
+  (Create truck)
+  (Drive vehicle)
+}
+
+Client --> (Create car)
+Client --> (Create motorcycle)
+Client --> (Create truck)
+Client --> (Drive vehicle)
+
+@enduml

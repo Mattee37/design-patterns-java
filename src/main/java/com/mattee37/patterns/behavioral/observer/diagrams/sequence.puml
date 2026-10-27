@@ -1,0 +1,26 @@
+@startuml
+participant "ObserverDemo" as demo
+participant "Newsletter" as nl
+participant "Subscriber Alice" as alice
+participant "Subscriber Bob" as bob
+participant "Subscriber Charlie" as charlie
+
+demo -> nl : new Newsletter()
+demo -> nl : subscribe(alice)
+demo -> nl : subscribe(bob)
+demo -> nl : subscribe(charlie)
+demo -> nl : publish("New TypeScript 5.0 Features!")
+activate nl
+nl -> nl : notify(article)
+nl -> alice : update(message)
+nl -> bob : update(message)
+nl -> charlie : update(message)
+deactivate nl
+demo -> nl : unsubscribe(bob)
+demo -> nl : publish("Bun 1.0 Released!")
+activate nl
+nl -> nl : notify(article)
+nl -> alice : update(message)
+nl -> charlie : update(message)
+deactivate nl
+@enduml

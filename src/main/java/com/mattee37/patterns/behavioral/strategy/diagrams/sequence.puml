@@ -1,0 +1,27 @@
+@startuml
+participant "StrategyDemo" as demo
+participant "ShoppingCart" as cart
+participant "CreditCardPayment" as card
+participant "PayPalPayment" as paypal
+participant "CryptoPayment" as crypto
+
+demo -> cart : new ShoppingCart()
+demo -> card : new CreditCardPayment("**** **** **** 1234")
+demo -> cart : setPaymentMethod(card)
+demo -> cart : checkout(100)
+activate cart
+cart -> card : pay(100)
+deactivate cart
+demo -> paypal : new PayPalPayment("user@example.com")
+demo -> cart : setPaymentMethod(paypal)
+demo -> cart : checkout(50)
+activate cart
+cart -> paypal : pay(50)
+deactivate cart
+demo -> crypto : new CryptoPayment("0x1234...abcd")
+demo -> cart : setPaymentMethod(crypto)
+demo -> cart : checkout(200)
+activate cart
+cart -> crypto : pay(200)
+deactivate cart
+@enduml

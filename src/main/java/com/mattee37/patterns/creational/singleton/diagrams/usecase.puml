@@ -1,0 +1,16 @@
+@startuml
+title Singleton Pattern Use Cases
+
+actor Client
+
+rectangle "Logging Subsystem" {
+  (Get shared logger)
+  (Log message)
+  (Read all logs)
+}
+
+Client --> (Get shared logger)
+Client --> (Log message)
+Client --> (Read all logs)
+
+@enduml

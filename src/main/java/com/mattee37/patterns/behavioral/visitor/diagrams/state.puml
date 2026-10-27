@@ -1,0 +1,14 @@
+@startuml
+[*] --> Created : new Circle(...) / new Rectangle(...)
+Created --> AreaCalculated : accept(areaCalculator)
+note right of AreaCalculated
+  visitCircle(this) computes pi * r^2
+  visitRectangle(this) computes width * height
+end note
+AreaCalculated --> Drawn : accept(drawer)
+note right of Drawn
+  visitCircle(this) / visitRectangle(this)
+  prints the drawing command
+end note
+Drawn --> [*]
+@enduml

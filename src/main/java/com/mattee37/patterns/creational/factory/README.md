@@ -69,3 +69,17 @@ We implement a vehicle factory that creates different types of vehicles:
 ## Run
 
 Run `com.mattee37.patterns.creational.factory.FactoryDemo#main`.
+
+## Diagrams
+
+### Class
+![Class diagram](diagrams/class.png)
+
+### State
+![State diagram](diagrams/state.png)
+
+### Sequence
+![Sequence diagram](diagrams/sequence.png)
+
+### Use Case
+![Use case diagram](diagrams/usecase.png)

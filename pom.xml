@@ -25,6 +25,12 @@
       <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
+    <!-- Rendering only: mvn -q exec:java -Dexec.mainClass=net.sourceforge.plantuml.Run -Dexec.args="-tpng -failfast2 <dir>" -->
+    <dependency>
+      <groupId>net.sourceforge.plantuml</groupId>
+      <artifactId>plantuml</artifactId>
+      <version>1.2025.4</version>
+    </dependency>
   </dependencies>
 
   <build>

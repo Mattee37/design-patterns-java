@@ -1,0 +1,10 @@
+@startuml
+title Logger Lifecycle
+
+[*] --> NotInstantiated
+NotInstantiated --> Instantiated : getInstance() [instance == null] / new Logger()
+Instantiated --> Instantiated : getInstance() [instance != null] / return cached
+Instantiated --> Instantiated : log(message) / logs.add(entry)
+Instantiated --> [*] : JVM shutdown
+
+@enduml

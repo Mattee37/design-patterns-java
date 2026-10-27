@@ -1,0 +1,25 @@
+@startuml
+participant "ProxyDemo (Client)" as client
+participant "ImageProxy" as proxy
+participant "RealImage" as real
+
+client -> proxy : new ImageProxy("photo1.jpg")
+activate proxy
+note right of proxy : image NOT loaded yet
+deactivate proxy
+
+client -> proxy : display()
+activate proxy
+proxy -> real : new RealImage("photo1.jpg")
+activate real
+real -> real : loadFromDisk()
+deactivate real
+proxy -> real : display()
+deactivate proxy
+
+client -> proxy : display()
+activate proxy
+note right of proxy : already loaded : no new RealImage
+proxy -> real : display()
+deactivate proxy
+@enduml

@@ -1,0 +1,29 @@
+@startuml
+participant "MediatorDemo" as demo
+participant "ChatRoom" as room
+participant "ChatUser (Alice)" as alice
+participant "ChatUser (Bob)" as bob
+participant "ChatUser (Charlie)" as charlie
+
+demo -> room : register(alice)
+demo -> room : register(bob)
+demo -> room : register(charlie)
+
+demo -> alice : send("Hello everyone!")
+activate alice
+alice -> room : notify("Alice", "Hello everyone!")
+activate room
+room -> bob : receive("Alice", "Hello everyone!")
+room -> charlie : receive("Alice", "Hello everyone!")
+deactivate room
+deactivate alice
+
+demo -> bob : send("Hi Alice!")
+activate bob
+bob -> room : notify("Bob", "Hi Alice!")
+activate room
+room -> alice : receive("Bob", "Hi Alice!")
+room -> charlie : receive("Bob", "Hi Alice!")
+deactivate room
+deactivate bob
+@enduml

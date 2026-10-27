@@ -1,0 +1,11 @@
+@startuml
+[*] --> StoppedState
+StoppedState --> PlayingState : play() / "Starting playback"
+StoppedState --> StoppedState : pause() / stop() / "Already stopped"
+PlayingState --> PlayingState : play() / "Already playing"
+PlayingState --> PausedState : pause() / "Pausing"
+PlayingState --> StoppedState : stop() / "Stopping"
+PausedState --> PlayingState : play() / "Resuming playback"
+PausedState --> PausedState : pause() / "Already paused"
+PausedState --> StoppedState : stop() / "Stopping"
+@enduml

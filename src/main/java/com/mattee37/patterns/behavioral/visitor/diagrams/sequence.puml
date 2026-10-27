@@ -1,0 +1,24 @@
+@startuml
+participant "VisitorDemo" as demo
+participant "Circle" as circle
+participant "Rectangle" as rect
+participant "AreaCalculator" as area
+participant "DrawVisitor" as drawer
+
+demo -> area : new AreaCalculator()
+demo -> circle : new Circle(5)
+demo -> circle : accept(areaCalculator)
+circle -> area : visitCircle(circle)
+demo -> rect : new Rectangle(4, 6)
+demo -> rect : accept(areaCalculator)
+rect -> area : visitRectangle(rectangle)
+demo -> circle : accept(areaCalculator) [Circle(3)]
+circle -> area : visitCircle(circle)
+demo -> drawer : new DrawVisitor()
+demo -> circle : accept(drawer)
+circle -> drawer : visitCircle(circle)
+demo -> rect : accept(drawer)
+rect -> drawer : visitRectangle(rectangle)
+demo -> circle : accept(drawer) [Circle(3)]
+circle -> drawer : visitCircle(circle)
+@enduml

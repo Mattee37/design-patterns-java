@@ -1,0 +1,36 @@
+@startuml
+interface Handler {
+  +setNext(handler: Handler): Handler
+  +handle(request: SupportRequest): void
+}
+abstract class BaseHandler {
+  -nextHandler: Handler
+  +setNext(handler: Handler): Handler
+  +handle(request: SupportRequest): void
+}
+class BasicSupport {
+  +handle(request: SupportRequest): void
+}
+class TechnicalSupport {
+  +handle(request: SupportRequest): void
+}
+class BillingSupport {
+  +handle(request: SupportRequest): void
+}
+class SupportRequest <<record>> {
+  +type: Type
+  +message: String
+}
+enum Type {
+  BASIC
+  TECHNICAL
+  BILLING
+}
+Handler <|.. BaseHandler
+BaseHandler <|-- BasicSupport
+BaseHandler <|-- TechnicalSupport
+BaseHandler <|-- BillingSupport
+BaseHandler --> Handler : next handler
+BaseHandler ..> SupportRequest : decides / forwards
+SupportRequest *-- Type
+@enduml

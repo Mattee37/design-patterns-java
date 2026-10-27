@@ -1,0 +1,29 @@
+@startuml
+participant "FacadeDemo (Client)" as client
+participant "HomeTheaterFacade" as facade
+participant "Lights" as lights
+participant "TV" as tv
+participant "SoundSystem" as sound
+participant "StreamingPlayer" as player
+
+client -> facade : watchMovie("The Matrix")
+activate facade
+facade -> lights : dim(10)
+facade -> tv : on()
+facade -> sound : on()
+facade -> sound : setVolume(50)
+facade -> player : on()
+facade -> player : play("The Matrix")
+facade --> client
+deactivate facade
+
+client -> facade : endMovie()
+activate facade
+facade -> player : stop()
+facade -> player : off()
+facade -> sound : off()
+facade -> tv : off()
+facade -> lights : on()
+facade --> client
+deactivate facade
+@enduml

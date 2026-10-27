@@ -1,0 +1,5 @@
+@startuml
+[*] --> Subscribed : subscribe(observer)
+Subscribed --> Subscribed : publish(article) / update(message) to each subscriber
+Subscribed --> [*] : unsubscribe(observer)
+@enduml

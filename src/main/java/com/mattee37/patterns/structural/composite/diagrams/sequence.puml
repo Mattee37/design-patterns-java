@@ -1,0 +1,28 @@
+@startuml
+participant "CompositeDemo (Client)" as client
+participant "Folder root" as root
+participant "Folder documents" as documents
+participant "File resume" as resume
+
+client -> root : print()
+activate root
+root -> documents : print("  ")
+activate documents
+documents -> resume : print("    ")
+activate resume
+resume --> documents
+deactivate resume
+documents --> root
+deactivate documents
+root --> client
+deactivate root
+
+client -> root : getSize()
+activate root
+root -> documents : getSize()
+activate documents
+documents --> root : 125
+deactivate documents
+root --> client : 2642
+deactivate root
+@enduml

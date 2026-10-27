@@ -1,0 +1,13 @@
+@startuml
+actor Client
+rectangle "Report Generation" {
+  (Generate PDF report) as uc1
+  (Generate Excel report) as uc2
+  (Override format hook) as uc3
+}
+Client --> uc1
+Client --> uc2
+Client --> uc3
+uc1 --> uc3 : <<extend>>
+uc2 --> uc3 : <<include>>
+@enduml

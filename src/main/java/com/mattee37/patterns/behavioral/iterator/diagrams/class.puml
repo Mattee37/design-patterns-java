@@ -1,0 +1,21 @@
+@startuml
+interface IterableCollection<T> {
+  +createIterator(): Iterator<T>
+}
+class NumberCollection {
+  -items: List<Integer>
+  +add(item: Integer)
+  +createIterator(): Iterator<Integer>
+}
+class NumberIterator <<private static nested>> {
+  -collection: List<Integer>
+  -position: int
+  +hasNext(): boolean
+  +next(): Integer
+}
+class "List<Integer>" as list
+IterableCollection <|.. NumberCollection
+NumberCollection *-- list : items
+NumberCollection ..> NumberIterator : createIterator() returns
+NumberIterator --> list : traverses by position
+@enduml

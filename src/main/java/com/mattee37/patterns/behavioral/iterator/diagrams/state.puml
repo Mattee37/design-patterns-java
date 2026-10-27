@@ -1,0 +1,13 @@
+@startuml
+[*] --> Position0 : createIterator() (position = 0)
+Position0 --> Position1 : hasNext() = true, next()
+Position1 --> Position2 : hasNext() = true, next()
+Position2 --> Position3 : hasNext() = true, next()
+Position3 --> Exhausted : hasNext() = true, next()
+Exhausted --> Exhausted : hasNext() = false
+Exhausted --> [*] : next() throws NoSuchElementException
+note bottom of Position0
+  Each createIterator() call starts a new
+  iterator at position 0 over the live list.
+end note
+@enduml

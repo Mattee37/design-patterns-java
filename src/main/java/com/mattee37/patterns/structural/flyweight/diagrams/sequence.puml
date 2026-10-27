@@ -1,0 +1,31 @@
+@startuml
+participant "FlyweightDemo (Client)" as client
+participant "TreeFactory" as factory
+participant "TreeType (Oak)" as oak
+participant "Tree" as tree
+
+client -> factory : getTreeType("Oak", "green", "rough")
+activate factory
+factory -> factory : key not in map : create TreeTypeImpl
+factory --> client : TreeType
+deactivate factory
+
+client -> factory : getTreeType("Oak", "green", "rough") [4 more times]
+activate factory
+factory --> client : same shared TreeType
+deactivate factory
+
+client -> tree : new Tree(x, y, oakType)
+activate tree
+deactivate tree
+
+client -> tree : draw()
+activate tree
+tree -> oak : draw(x, y)
+deactivate tree
+
+client -> factory : getTypeCount()
+activate factory
+factory --> client : 2
+deactivate factory
+@enduml

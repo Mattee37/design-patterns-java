@@ -1,0 +1,37 @@
+@startuml
+interface Device {
+  +isEnabled(): boolean
+  +enable()
+  +disable()
+  +getVolume(): int
+  +setVolume(volume: int)
+}
+class TV {
+  -on: boolean
+  -volume: int
+  +isEnabled(): boolean
+  +enable()
+  +disable()
+  +getVolume(): int
+  +setVolume(volume: int)
+}
+class Radio {
+  -on: boolean
+  -volume: int
+  +isEnabled(): boolean
+  +enable()
+  +disable()
+  +getVolume(): int
+  +setVolume(volume: int)
+}
+class RemoteControl {
+  #device: Device
+  +RemoteControl(device: Device)
+  +togglePower()
+  +volumeUp()
+  +volumeDown()
+}
+Device <|.. TV
+Device <|.. Radio
+RemoteControl *-- Device : controls
+@enduml

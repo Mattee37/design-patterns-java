@@ -1,0 +1,10 @@
+@startuml
+title Vehicle Lifecycle (Factory Demo)
+
+[*] --> Created : createVehicle(type)
+Created --> Ready : returned to client
+Ready --> Driving : drive()
+Driving --> Ready : drive() returns
+Ready --> [*] : demo ends
+
+@enduml

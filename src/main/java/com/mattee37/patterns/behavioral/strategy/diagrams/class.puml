@@ -1,0 +1,29 @@
+@startuml
+interface PaymentStrategy {
+  +pay(amount: int): void
+}
+class CreditCardPayment {
+  -cardNumber: String
+  +CreditCardPayment(cardNumber: String)
+  +pay(amount: int): void
+}
+class PayPalPayment {
+  -email: String
+  +PayPalPayment(email: String)
+  +pay(amount: int): void
+}
+class CryptoPayment {
+  -wallet: String
+  +CryptoPayment(wallet: String)
+  +pay(amount: int): void
+}
+class ShoppingCart {
+  -strategy: PaymentStrategy
+  +setPaymentMethod(strategy: PaymentStrategy): void
+  +checkout(amount: int): void
+}
+PaymentStrategy <|.. CreditCardPayment
+PaymentStrategy <|.. PayPalPayment
+PaymentStrategy <|.. CryptoPayment
+ShoppingCart o-- "0..1" PaymentStrategy : current strategy
+@enduml

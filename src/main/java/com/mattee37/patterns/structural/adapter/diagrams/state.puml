@@ -1,0 +1,8 @@
+@startuml
+[*] --> Created : new AudioPlayerAdapter(legacyPlayer)
+Created --> Translating : play("song.mp3")
+Translating --> Created : playMp3() returns
+Created --> Translating : play("track.mp3")
+Translating --> Created : playMp3() returns
+Created --> [*] : main() ends
+@enduml

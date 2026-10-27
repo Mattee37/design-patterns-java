@@ -1,0 +1,53 @@
+@startuml
+title Builder Demo Flow
+
+participant "BuilderDemo" as demo
+participant "PizzaBuilder" as builder
+participant "Pizza" as pizza
+
+demo -> builder : setSize(Size.MEDIUM)
+activate builder
+builder --> demo : this
+deactivate builder
+
+demo -> builder : addCheese()
+activate builder
+builder --> demo : this
+deactivate builder
+
+demo -> builder : build()
+activate builder
+builder -> pizza : new Pizza(MEDIUM, true, false, false, false)
+activate pizza
+pizza --> builder
+deactivate pizza
+builder -> builder : reset()
+builder --> demo : margherita
+deactivate builder
+
+demo -> builder : setSize(Size.LARGE).addCheese().addPepperoni().addMushrooms().addOlives()
+activate builder
+builder --> demo : this
+deactivate builder
+
+demo -> builder : build()
+activate builder
+builder -> pizza : new Pizza(LARGE, true, true, true, true)
+activate pizza
+pizza --> builder
+deactivate pizza
+builder -> builder : reset()
+builder --> demo : supreme
+deactivate builder
+
+demo -> builder : setSize(Size.SMALL).addCheese().addPepperoni().build()
+activate builder
+builder -> pizza : new Pizza(SMALL, true, true, false, false)
+activate pizza
+pizza --> builder
+deactivate pizza
+builder -> builder : reset()
+builder --> demo : small
+deactivate builder
+
+@enduml

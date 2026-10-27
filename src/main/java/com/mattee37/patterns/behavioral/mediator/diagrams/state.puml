@@ -1,0 +1,12 @@
+@startuml
+[*] --> Created : new ChatUser(name, mediator)
+Created --> Joined : chatRoom.register(user)
+Joined --> Joined : send(message)
+Joined --> Joined : receive(from, message)
+Joined --> [*] : demo ends
+note bottom of Joined
+  While joined, every send() is routed by
+  ChatRoom.notify() to all other registered
+  users; the user never contacts peers directly.
+end note
+@enduml

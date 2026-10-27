@@ -1,0 +1,36 @@
+@startuml
+participant "IteratorDemo" as demo
+participant "NumberCollection" as coll
+participant "NumberIterator" as itr
+
+demo -> coll : add(10)
+demo -> coll : add(20)
+demo -> coll : add(30)
+demo -> coll : add(40)
+
+demo -> coll : createIterator()
+activate coll
+coll -> itr : new NumberIterator(items)
+itr --> coll
+coll --> demo : Iterator (position = 0)
+deactivate coll
+
+loop while itr.hasNext()
+  demo -> itr : hasNext()
+  itr --> demo : true
+  demo -> itr : next()
+  itr --> demo : next element
+end
+
+demo -> coll : createIterator()
+activate coll
+coll -> itr : new NumberIterator(items)
+itr --> coll
+coll --> demo : fresh Iterator (position = 0)
+deactivate coll
+
+demo -> itr : next()
+itr --> demo : 10
+demo -> itr : next()
+itr --> demo : 20
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+title Prototype Pattern Use Cases
+
+actor Client
+
+rectangle "Document Prototyping System" {
+  (Create template document)
+  (Clone template)
+  (Customize clone)
+  (Print document)
+}
+
+Client --> (Create template document)
+Client --> (Clone template)
+Client --> (Customize clone)
+Client --> (Print document)
+
+@enduml

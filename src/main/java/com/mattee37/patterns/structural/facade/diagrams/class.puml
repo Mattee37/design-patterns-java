@@ -1,0 +1,33 @@
+@startuml
+class HomeTheaterFacade {
+  -tv: TV
+  -sound: SoundSystem
+  -player: StreamingPlayer
+  -lights: Lights
+  +watchMovie(movie: String)
+  +endMovie()
+}
+class TV {
+  +on()
+  +off()
+}
+class SoundSystem {
+  +on()
+  +off()
+  +setVolume(level: int)
+}
+class StreamingPlayer {
+  +on()
+  +off()
+  +play(movie: String)
+  +stop()
+}
+class Lights {
+  +dim(level: int)
+  +on()
+}
+HomeTheaterFacade *-- TV
+HomeTheaterFacade *-- SoundSystem
+HomeTheaterFacade *-- StreamingPlayer
+HomeTheaterFacade *-- Lights
+@enduml

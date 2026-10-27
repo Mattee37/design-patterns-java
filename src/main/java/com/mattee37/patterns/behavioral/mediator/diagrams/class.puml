@@ -1,0 +1,27 @@
+@startuml
+interface Mediator {
+  +notify(sender: String, message: String): void
+}
+interface User {
+  +name(): String
+  +send(message: String)
+  +receive(from: String, message: String)
+}
+class ChatRoom {
+  -users: Map<String, User>
+  +register(user: User)
+  +notify(sender: String, message: String)
+}
+class ChatUser {
+  -name: String
+  -mediator: Mediator
+  +ChatUser(name: String, mediator: Mediator)
+  +name(): String
+  +send(message: String)
+  +receive(from: String, message: String)
+}
+Mediator <|.. ChatRoom
+User <|.. ChatUser
+ChatRoom *-- User : registered users
+ChatUser ..> Mediator : notify(name, message)
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+actor Client
+rectangle "Home Theater" {
+  Client --> (Watch movie)
+  Client --> (End movie)
+}
+@enduml

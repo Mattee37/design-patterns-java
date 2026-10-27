@@ -1,0 +1,12 @@
+@startuml
+title UI Theme Family Lifecycle (Abstract Factory Demo)
+
+[*] --> DarkThemeSelected : new DarkThemeFactory()
+DarkThemeSelected --> DarkWidgetsCreated : createButton() + createInput()
+DarkWidgetsCreated --> DarkRendered : button.render() + input.render()
+DarkRendered --> LightThemeSelected : new LightThemeFactory()
+LightThemeSelected --> LightWidgetsCreated : createButton() + createInput()
+LightWidgetsCreated --> LightRendered : button.render() + input.render()
+LightRendered --> [*] : demo ends
+
+@enduml

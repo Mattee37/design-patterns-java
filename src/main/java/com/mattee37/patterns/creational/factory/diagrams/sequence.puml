@@ -1,0 +1,44 @@
+@startuml
+title Factory Demo Flow
+
+participant "FactoryDemo" as demo
+participant "VehicleFactory" as factory
+participant "Vehicle (Car)" as car
+participant "Vehicle (Motorcycle)" as moto
+participant "Vehicle (Truck)" as truck
+
+demo -> factory : createVehicle(Type.CAR)
+activate factory
+factory --> demo : new Car()
+deactivate factory
+
+demo -> factory : createVehicle(Type.MOTORCYCLE)
+activate factory
+factory --> demo : new Motorcycle()
+deactivate factory
+
+demo -> factory : createVehicle(Type.TRUCK)
+activate factory
+factory --> demo : new Truck()
+deactivate factory
+
+demo -> car : drive()
+activate car
+car --> demo
+deactivate car
+
+demo -> moto : drive()
+activate moto
+moto --> demo
+deactivate moto
+
+demo -> truck : drive()
+activate truck
+truck --> demo
+deactivate truck
+
+demo -> car : wheels()
+demo -> moto : wheels()
+demo -> truck : wheels()
+
+@enduml

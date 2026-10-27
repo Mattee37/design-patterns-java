@@ -1,0 +1,28 @@
+@startuml
+interface TreeType {
+  +name(): String
+  +color(): String
+  +texture(): String
+  +draw(x: double, y: double)
+}
+class TreeTypeImpl <<record, package-private>> {
+  name: String
+  color: String
+  texture: String
+  +draw(x: double, y: double)
+}
+class TreeFactory <<final, utility>> {
+  {static} -treeTypes: Map<String, TreeType>
+  {static} +getTreeType(name, color, texture): TreeType
+  {static} +getTypeCount(): int
+}
+class Tree <<record>> {
+  x: double
+  y: double
+  type: TreeType
+  +draw()
+}
+TreeType <|.. TreeTypeImpl
+TreeFactory ..> TreeType : creates / reuses
+Tree *-- TreeType : shared type
+@enduml

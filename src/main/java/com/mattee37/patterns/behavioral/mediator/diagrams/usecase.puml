@@ -1,0 +1,13 @@
+@startuml
+actor Client
+rectangle "Chat Room Mediation" {
+  (Register user in chat room) as uc1
+  (Send message to all users) as uc2
+  (Receive messages from other users) as uc3
+}
+Client --> uc1
+Client --> uc2
+Client --> uc3
+uc2 ..> uc1 : <<include>>
+uc3 ..> uc2 : <<extend>>
+@enduml

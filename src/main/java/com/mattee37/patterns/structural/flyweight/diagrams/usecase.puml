@@ -1,0 +1,10 @@
+@startuml
+actor Client
+rectangle "Forest Rendering" {
+  Client --> (Get shared tree type)
+  Client --> (Plant tree with position)
+  Client --> (Draw forest)
+  (Draw forest) ..> (Plant tree with position) : <<include>>
+  (Plant tree with position) ..> (Get shared tree type) : <<include>>
+}
+@enduml

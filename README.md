@@ -66,6 +66,25 @@ mvn -q compile exec:java -Dexec.mainClass="com.mattee37.patterns.creational.buil
 mvn test
 ```
 
+## UML diagrams
+
+Every pattern README embeds 4 UML diagrams rendered from PlantUML sources: **class**, **state**, **sequence**, and **use case**.
+
+- Sources: `src/main/java/com/mattee37/patterns/<category>/<pattern>/diagrams/*.puml`
+- Rendered: same folder, `*.png` (embedded in each pattern's README)
+
+Re-render after editing any `.puml` (PowerShell — note the quoted args):
+
+```powershell
+mvn -q exec:java -Dexec.mainClass=net.sourceforge.plantuml.Run "-Dexec.args=-tpng -failfast2 src\main\java\com\mattee37\patterns\**"
+```
+
+Syntax check without rendering (exit code 1 on any error):
+
+```powershell
+mvn -q exec:java -Dexec.mainClass=net.sourceforge.plantuml.Run "-Dexec.args=-checkonly src\main\java\com\mattee37\patterns\**"
+```
+
 ## Patterns
 
 ### Creational Patterns

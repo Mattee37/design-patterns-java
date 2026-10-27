@@ -1,0 +1,13 @@
+@startuml
+actor Client
+rectangle "Customer Support Chain" {
+  (Submit support request) as uc1
+  (Route request to next handler) as uc2
+  (Compose the handler chain) as uc3
+  (Report unhandled request) as uc4
+}
+Client --> uc1
+Client --> uc3
+uc1 ..> uc2 : <<include>>
+uc2 ..> uc4 : <<extend>>
+@enduml

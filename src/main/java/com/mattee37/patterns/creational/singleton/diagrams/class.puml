@@ -1,0 +1,19 @@
+@startuml
+title Singleton Pattern - Class Diagram
+
+class Logger {
+  -instance: Logger {static}
+  -logs: List<String>
+  -Logger()
+  +{static} getInstance(): Logger
+  +log(message: String): void
+  +getLogs(): List<String>
+}
+
+note right of Logger
+  Private constructor guarantees a single
+  instance. getInstance() is synchronized
+  and lazily creates it on first call.
+end note
+
+@enduml

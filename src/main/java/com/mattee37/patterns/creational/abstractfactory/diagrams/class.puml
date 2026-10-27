@@ -1,0 +1,64 @@
+@startuml
+title Abstract Factory Pattern - Class Diagram
+
+interface UIFactory {
+  +createButton(): Button
+  +createInput(): Input
+}
+
+interface Button {
+  +render(): void
+}
+
+interface Input {
+  +render(): void
+}
+
+class DarkThemeFactory {
+  +createButton(): Button
+  +createInput(): Input
+}
+
+class LightThemeFactory {
+  +createButton(): Button
+  +createInput(): Input
+}
+
+class DarkButton {
+  +render(): void
+}
+
+class DarkInput {
+  +render(): void
+}
+
+class LightButton {
+  +render(): void
+}
+
+class LightInput {
+  +render(): void
+}
+
+UIFactory <|.. DarkThemeFactory
+UIFactory <|.. LightThemeFactory
+Button <|.. DarkButton
+Button <|.. LightButton
+Input <|.. DarkInput
+Input <|.. LightInput
+DarkThemeFactory ..> DarkButton : creates
+DarkThemeFactory ..> DarkInput : creates
+LightThemeFactory ..> LightButton : creates
+LightThemeFactory ..> LightInput : creates
+
+note bottom of DarkThemeFactory
+  DarkButton and DarkInput are package-private
+  classes inside DarkThemeFactory.java.
+end note
+
+note bottom of LightThemeFactory
+  LightButton and LightInput are package-private
+  classes inside LightThemeFactory.java.
+end note
+
+@enduml

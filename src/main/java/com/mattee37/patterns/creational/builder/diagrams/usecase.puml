@@ -1,0 +1,18 @@
+@startuml
+title Builder Pattern Use Cases
+
+actor "Demo user" as user
+
+rectangle "Pizza Ordering System" {
+  (Set pizza size)
+  (Add toppings)
+  (Build pizza)
+  (Reuse builder for next pizza)
+}
+
+user --> (Set pizza size)
+user --> (Add toppings)
+user --> (Build pizza)
+user --> (Reuse builder for next pizza)
+
+@enduml

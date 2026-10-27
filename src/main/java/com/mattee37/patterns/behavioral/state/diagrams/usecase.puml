@@ -1,0 +1,11 @@
+@startuml
+actor Client
+rectangle "Audio Player" {
+  (Play or resume playback) as uc1
+  (Pause playback) as uc2
+  (Stop playback) as uc3
+}
+Client --> uc1
+Client --> uc2
+Client --> uc3
+@enduml

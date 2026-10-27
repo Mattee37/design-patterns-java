@@ -1,0 +1,28 @@
+@startuml
+interface Command {
+  +execute()
+  +undo()
+}
+class CommandHistory {
+  -history: Deque<Command>
+  +execute(command: Command)
+  +undo()
+}
+class TextEditor {
+  -content: String
+  +write(text: String)
+  +deleteLast(count: int)
+  +getContent(): String
+  +print()
+}
+class WriteCommand {
+  -editor: TextEditor
+  -text: String
+  +WriteCommand(editor: TextEditor, text: String)
+  +execute()
+  +undo()
+}
+Command <|.. WriteCommand
+CommandHistory *-- Command : undo history
+WriteCommand ..> TextEditor : receiver, invokes write / deleteLast
+@enduml

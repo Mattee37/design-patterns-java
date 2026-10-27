@@ -1,0 +1,25 @@
+@startuml
+title Prototype Pattern - Class Diagram
+
+interface "Prototype<T>" as Prototype {
+  +clone(): T
+}
+
+class Document {
+  +title: String
+  +content: String
+  +author: String
+  +Document(title: String, content: String, author: String)
+  +clone(): Document
+  +print(): void
+}
+
+Prototype <|.. Document
+Document ..> Document : clones (new instance)
+
+note right of Document
+  clone() copies title, content and author
+  into a new Document; the original is untouched.
+end note
+
+@enduml

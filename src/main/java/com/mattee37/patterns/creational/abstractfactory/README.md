@@ -69,3 +69,17 @@ We implement a UI component factory with two themes (Dark and Light):
 ## Run
 
 Run `com.mattee37.patterns.creational.abstractfactory.AbstractFactoryDemo#main`.
+
+## Diagrams
+
+### Class
+![Class diagram](diagrams/class.png)
+
+### State
+![State diagram](diagrams/state.png)
+
+### Sequence
+![Sequence diagram](diagrams/sequence.png)
+
+### Use Case
+![Use case diagram](diagrams/usecase.png)

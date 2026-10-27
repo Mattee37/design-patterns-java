@@ -1,0 +1,16 @@
+@startuml
+[*] --> Received
+Received --> BasicSupport : handle(request) on chain head
+BasicSupport --> Handled : type == BASIC
+BasicSupport --> TechnicalSupport : else super.handle(request)
+TechnicalSupport --> Handled : type == TECHNICAL
+TechnicalSupport --> BillingSupport : else super.handle(request)
+BillingSupport --> Handled : type == BILLING
+BillingSupport --> NoHandler : else nextHandler == null
+Handled --> [*]
+NoHandler --> [*]
+note right of NoHandler
+  BaseHandler.handle prints
+  "No handler available for this request"
+end note
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+title Abstract Factory Use Cases
+
+actor Client
+
+rectangle "Themed UI System" {
+  (Render dark theme UI)
+  (Render light theme UI)
+  (Add a new theme family)
+}
+
+Client --> (Render dark theme UI)
+Client --> (Render light theme UI)
+Client --> (Add a new theme family)
+
+@enduml

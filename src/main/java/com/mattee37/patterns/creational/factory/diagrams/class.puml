@@ -1,0 +1,50 @@
+@startuml
+title Factory Pattern - Class Diagram
+
+interface Vehicle {
+  +type(): String
+  +wheels(): int
+  +drive(): void
+}
+
+class Car {
+  +type(): String
+  +wheels(): int
+  +drive(): void
+}
+
+class Motorcycle {
+  +type(): String
+  +wheels(): int
+  +drive(): void
+}
+
+class Truck {
+  +type(): String
+  +wheels(): int
+  +drive(): void
+}
+
+enum Type {
+  CAR
+  MOTORCYCLE
+  TRUCK
+}
+
+class VehicleFactory {
+  -VehicleFactory()
+  +{static} createVehicle(type: Type): Vehicle
+}
+
+Vehicle <|.. Car
+Vehicle <|.. Motorcycle
+Vehicle <|.. Truck
+VehicleFactory ..> Vehicle : creates
+VehicleFactory *-- Type
+
+note right of VehicleFactory
+  Private constructor, static method.
+  The switch selects the concrete class.
+end note
+
+@enduml

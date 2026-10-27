@@ -1,0 +1,10 @@
+@startuml
+actor Client
+rectangle "Coffee Shop" {
+  Client --> (Order plain coffee)
+  Client --> (Add extra to coffee)
+  Client --> (Compute total cost)
+  (Compute total cost) ..> (Order plain coffee) : <<include>>
+  (Compute total cost) ..> (Add extra to coffee) : <<extend>>
+}
+@enduml

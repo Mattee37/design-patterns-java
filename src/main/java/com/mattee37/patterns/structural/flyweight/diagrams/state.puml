@@ -1,0 +1,7 @@
+@startuml
+[*] --> Requested : getTreeType(name, color, texture)
+Requested --> Cached : key found in map : return shared instance
+Requested --> Creating : key not found
+Creating --> Cached : map.put(key, new TreeTypeImpl(...))
+Cached --> [*] : 8 trees share 2 types
+@enduml

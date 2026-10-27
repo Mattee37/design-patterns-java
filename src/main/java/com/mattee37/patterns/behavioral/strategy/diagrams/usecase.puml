@@ -1,0 +1,12 @@
+@startuml
+actor Client
+rectangle "Shopping Cart Checkout" {
+  (Select payment method) as uc1
+  (Switch payment method) as uc2
+  (Checkout with selected method) as uc3
+}
+Client --> uc1
+Client --> uc2
+Client --> uc3
+uc3 --> uc1 : <<include>>
+@enduml

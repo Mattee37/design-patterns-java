@@ -1,0 +1,7 @@
+@startuml
+[*] --> PoweredOff : new RemoteControl(device)
+PoweredOff --> PoweredOn : togglePower() [device.enable()]
+PoweredOn --> PoweredOff : togglePower() [device.disable()]
+PoweredOn --> PoweredOn : volumeUp() / volumeDown() [setVolume(clamped 0..100)]
+PoweredOff --> [*] : main() ends
+@enduml

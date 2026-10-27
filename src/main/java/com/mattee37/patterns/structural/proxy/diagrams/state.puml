@@ -1,0 +1,8 @@
+@startuml
+[*] --> NotLoaded : new ImageProxy(filename)
+NotLoaded --> Loading : display() [realImage == null]
+Loading --> Loaded : loadFromDisk() done
+Loaded --> Displayed : display() [realImage cached]
+Displayed --> Loaded : next display()
+Displayed --> [*] : main() ends
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+actor Client
+rectangle "Editor Snapshot Management" {
+  (Edit document content) as uc1
+  (Save snapshot of state) as uc2
+  (Restore previous state) as uc3
+  (Walk back through history) as uc4
+}
+Client --> uc1
+Client --> uc2
+Client --> uc3
+Client --> uc4
+uc4 ..> uc3 : <<include>>
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+[*] --> Empty : new Editor()
+Empty --> State1 : type("Hello")
+State1 --> State1Saved : save(), History.push
+State1Saved --> State2 : type(" World")
+State2 --> State2Saved : save(), History.push
+State2Saved --> State3 : type("!!!")
+State3 --> State2 : restore(History.pop())
+State2 --> State1 : restore(History.pop())
+State1 --> [*] : demo ends
+note bottom of State2Saved
+  States are the Editor content values from
+  MementoDemo.main(); saved states have a
+  matching Memento on the History stack.
+end note
+@enduml

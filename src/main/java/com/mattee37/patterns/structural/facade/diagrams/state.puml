@@ -1,0 +1,7 @@
+@startuml
+[*] --> Idle : new HomeTheaterFacade()
+Idle --> GettingReady : watchMovie(movie)
+GettingReady --> MoviePlaying : player.play(movie)
+MoviePlaying --> ShuttingDown : endMovie()
+ShuttingDown --> [*] : main() ends
+@enduml

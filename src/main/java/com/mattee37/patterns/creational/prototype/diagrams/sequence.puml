@@ -1,0 +1,48 @@
+@startuml
+title Prototype Demo Flow
+
+participant "PrototypeDemo" as demo
+participant "Document template" as template
+participant "Document contract1" as c1
+participant "Document contract2" as c2
+
+demo -> template : new Document("Contract Template", ..., "Legal Team")
+activate template
+
+demo -> template : print()
+activate template
+template --> demo
+deactivate template
+
+demo -> template : clone()
+activate template
+template --> demo : contract1
+deactivate template
+
+demo -> c1 : title = "Contract for John"
+demo -> c1 : content = "Agreement with John Doe..."
+
+demo -> template : clone()
+activate template
+template --> demo : contract2
+deactivate template
+
+demo -> c2 : title = "Contract for Jane"
+demo -> c2 : content = "Agreement with Jane Smith..."
+
+demo -> c1 : print()
+activate c1
+c1 --> demo
+deactivate c1
+
+demo -> c2 : print()
+activate c2
+c2 --> demo
+deactivate c2
+
+demo -> template : print()
+activate template
+template --> demo : original unchanged
+deactivate template
+
+@enduml

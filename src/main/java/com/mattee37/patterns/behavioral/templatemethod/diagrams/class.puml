@@ -1,0 +1,23 @@
+@startuml
+abstract class ReportGenerator {
+  +generate(): void
+  #fetchData(): void
+  #processData(): void
+  #formatReport(): void
+  #export(): void
+}
+class PDFReport {
+  #fetchData(): void
+  #processData(): void
+  #export(): void
+}
+class ExcelReport {
+  #fetchData(): void
+  #processData(): void
+  #formatReport(): void
+  #export(): void
+}
+ReportGenerator <|-- PDFReport
+ReportGenerator <|-- ExcelReport
+ReportGenerator ..> ReportGenerator : generate() calls step methods
+@enduml

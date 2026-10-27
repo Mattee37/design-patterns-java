@@ -1,0 +1,25 @@
+@startuml
+interface Subject {
+  +subscribe(observer: Observer): void
+  +unsubscribe(observer: Observer): void
+  +notify(message: String): void
+}
+interface Observer {
+  +update(message: String): void
+}
+class Newsletter {
+  -subscribers: List<Observer>
+  +subscribe(observer: Observer): void
+  +unsubscribe(observer: Observer): void
+  +notify(message: String): void
+  +publish(article: String): void
+}
+class Subscriber {
+  -name: String
+  +Subscriber(name: String)
+  +update(message: String): void
+}
+Subject <|.. Newsletter
+Observer <|.. Subscriber
+Newsletter o-- "0..*" Observer : subscribers
+@enduml

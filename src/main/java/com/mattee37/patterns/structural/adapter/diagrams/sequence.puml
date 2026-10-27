@@ -1,0 +1,27 @@
+@startuml
+participant "AdapterDemo (Client)" as client
+participant "AudioPlayerAdapter" as adapter
+participant "OldMp3Player" as legacy
+
+client -> adapter : new AudioPlayerAdapter(legacyPlayer)
+activate adapter
+deactivate adapter
+
+client -> adapter : play("song.mp3")
+activate adapter
+adapter -> legacy : playMp3("song.mp3")
+activate legacy
+legacy --> adapter
+deactivate legacy
+adapter --> client
+deactivate adapter
+
+client -> adapter : play("track.mp3")
+activate adapter
+adapter -> legacy : playMp3("track.mp3")
+activate legacy
+legacy --> adapter
+deactivate legacy
+adapter --> client
+deactivate adapter
+@enduml

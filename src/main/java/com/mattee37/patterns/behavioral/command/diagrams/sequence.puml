@@ -1,0 +1,56 @@
+@startuml
+participant "CommandDemo" as demo
+participant "CommandHistory" as history
+participant "WriteCommand" as cmd
+participant "TextEditor" as editor
+
+demo -> history : execute(new WriteCommand(editor, "Hello"))
+activate history
+history -> cmd : execute()
+activate cmd
+cmd -> editor : write("Hello")
+deactivate cmd
+history -> history : history.push(command)
+deactivate history
+demo -> editor : print()
+
+demo -> history : execute(new WriteCommand(editor, " World"))
+activate history
+history -> cmd : execute()
+activate cmd
+cmd -> editor : write(" World")
+deactivate cmd
+history -> history : history.push(command)
+deactivate history
+demo -> editor : print()
+
+demo -> history : execute(new WriteCommand(editor, "!"))
+activate history
+history -> cmd : execute()
+activate cmd
+cmd -> editor : write("!")
+deactivate cmd
+history -> history : history.push(command)
+deactivate history
+demo -> editor : print()
+
+demo -> history : undo()
+activate history
+history -> history : command = history.poll()
+history -> cmd : undo()
+activate cmd
+cmd -> editor : deleteLast(1)
+deactivate cmd
+deactivate history
+demo -> editor : print()
+
+demo -> history : undo()
+activate history
+history -> history : command = history.poll()
+history -> cmd : undo()
+activate cmd
+cmd -> editor : deleteLast(6)
+deactivate cmd
+deactivate history
+demo -> editor : print()
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+[*] --> NoHistory : new CommandHistory()
+NoHistory --> OneCommand : execute(command)
+OneCommand --> TwoCommands : execute(command)
+TwoCommands --> ThreeCommands : execute(command)
+ThreeCommands --> TwoCommands : undo()
+TwoCommands --> OneCommand : undo()
+NoHistory --> [*] : undo() on empty history (no-op)
+note bottom of ThreeCommands
+  Mirrors CommandDemo.main(): three
+  WriteCommands executed, then two undone.
+  Each execute() also updates the TextEditor content.
+end note
+@enduml

@@ -1,0 +1,42 @@
+@startuml
+title Builder Pattern - Class Diagram
+
+class Pizza {
+  +size: Size
+  +cheese: boolean
+  +pepperoni: boolean
+  +mushrooms: boolean
+  +olives: boolean
+}
+
+enum Size {
+  SMALL
+  MEDIUM
+  LARGE
+}
+
+class PizzaBuilder {
+  -size: Size
+  -cheese: boolean
+  -pepperoni: boolean
+  -mushrooms: boolean
+  -olives: boolean
+  +setSize(size: Size): PizzaBuilder
+  +addCheese(): PizzaBuilder
+  +addPepperoni(): PizzaBuilder
+  +addMushrooms(): PizzaBuilder
+  +addOlives(): PizzaBuilder
+  +build(): Pizza
+  -reset(): void
+}
+
+PizzaBuilder ..> Pizza : builds
+Pizza *-- Size
+
+note right of PizzaBuilder
+  Fluent interface: every step returns "this".
+  build() creates an immutable Pizza record,
+  then resets the builder to defaults.
+end note
+
+@enduml

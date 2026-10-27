@@ -1,0 +1,26 @@
+@startuml
+interface FileSystemItem <<sealed>> {
+  +name(): String
+  +getSize(): int
+  +print(indent: String)
+  +print()
+}
+class File {
+  name: String
+  size: int
+  +getSize(): int
+  +print(indent: String)
+}
+class Folder {
+  -name: String
+  -children: List<FileSystemItem>
+  +Folder(name: String)
+  +add(item: FileSystemItem)
+  +name(): String
+  +getSize(): int
+  +print(indent: String)
+}
+FileSystemItem <|.. File
+FileSystemItem <|.. Folder
+Folder *-- FileSystemItem : children 0..*
+@enduml

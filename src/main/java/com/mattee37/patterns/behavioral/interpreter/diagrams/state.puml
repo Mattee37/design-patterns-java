@@ -1,0 +1,14 @@
+@startuml
+[*] --> EvaluatingRoot : interpret(context)
+EvaluatingRoot --> EvaluatingLeft : composite evaluates left operand
+EvaluatingLeft --> EvaluatingRight : left value returned
+EvaluatingRight --> ResultComputed : right value returned
+ResultComputed --> [*] : double returned to caller
+note top of EvaluatingRoot
+  Terminal expressions (NumberExpression,
+  VariableExpression) have no children:
+  they go straight to ResultComputed.
+  DivideExpression also throws
+  ArithmeticException on a zero divisor.
+end note
+@enduml

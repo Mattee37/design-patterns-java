@@ -1,0 +1,8 @@
+@startuml
+actor Client
+rectangle "Audio Playback" {
+  Client --> (Play audio via MediaPlayer interface)
+  Client --> (Adapt legacy playMp3 call)
+  (Play audio via MediaPlayer interface) ..> (Adapt legacy playMp3 call) : <<include>>
+}
+@enduml

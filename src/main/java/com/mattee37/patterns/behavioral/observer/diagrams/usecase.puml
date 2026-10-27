@@ -1,0 +1,14 @@
+@startuml
+actor Client
+rectangle "Newsletter System" {
+  (Subscribe to newsletter) as uc1
+  (Unsubscribe from newsletter) as uc2
+  (Publish article to subscribers) as uc3
+  (Receive article updates) as uc4
+}
+Client --> uc1
+Client --> uc2
+Client --> uc3
+Client --> uc4
+uc3 ..> uc4 : <<include>>
+@enduml

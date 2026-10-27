@@ -1,0 +1,8 @@
+@startuml
+[*] --> Empty : new Folder("root")
+Empty --> Populated : add(item)
+Populated --> Populated : add(item)
+Populated --> Rendering : print()
+Rendering --> Sized : getSize()
+Sized --> [*] : main() ends
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+[*] --> SimpleCoffee : new SimpleCoffee() [$2.00]
+SimpleCoffee --> WithMilk : new MilkDecorator(coffee) [+ $0.50]
+WithMilk --> WithSugar : new SugarDecorator(coffee) [+ $0.25]
+WithSugar --> WithWhippedCream : new WhippedCreamDecorator(coffee) [+ $0.75]
+WithWhippedCream --> [*] : cost()/description() consumed [$3.50]
+@enduml

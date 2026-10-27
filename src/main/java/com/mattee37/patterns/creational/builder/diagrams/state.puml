@@ -1,0 +1,11 @@
+@startuml
+title PizzaBuilder Lifecycle
+
+[*] --> Configured : new PizzaBuilder() [size=MEDIUM, no toppings]
+Configured --> Configured : setSize(size)
+Configured --> Configured : addCheese() / addPepperoni() / addMushrooms() / addOlives()
+Configured --> Building : build()
+Building --> Configured : reset() [defaults restored]
+Building --> [*] : Pizza record returned
+
+@enduml

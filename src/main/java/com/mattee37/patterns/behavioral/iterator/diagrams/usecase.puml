@@ -1,0 +1,15 @@
+@startuml
+actor Client
+rectangle "Number Collection Iteration" {
+  (Add items to collection) as uc1
+  (Create an iterator) as uc2
+  (Traverse elements in order) as uc3
+  (Start a fresh traversal) as uc4
+}
+Client --> uc1
+Client --> uc2
+Client --> uc3
+Client --> uc4
+uc3 ..> uc2 : <<include>>
+uc4 ..> uc2 : <<include>>
+@enduml

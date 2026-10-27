@@ -1,0 +1,20 @@
+@startuml
+interface Image {
+  +display()
+}
+class RealImage <<package-private>> {
+  -filename: String
+  -RealImage(filename: String)
+  -loadFromDisk()
+  +display()
+}
+class ImageProxy {
+  -filename: String
+  -realImage: RealImage
+  +ImageProxy(filename: String)
+  +display()
+}
+Image <|.. RealImage
+Image <|.. ImageProxy
+ImageProxy ..> RealImage : lazy creates
+@enduml

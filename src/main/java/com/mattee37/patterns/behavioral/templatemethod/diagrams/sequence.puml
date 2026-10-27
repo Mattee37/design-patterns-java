@@ -1,0 +1,24 @@
+@startuml
+participant "TemplateMethodDemo" as demo
+participant "PDFReport" as pdf
+participant "ExcelReport" as excel
+
+demo -> pdf : new PDFReport()
+demo -> pdf : generate()
+activate pdf
+pdf -> pdf : fetchData()
+pdf -> pdf : processData()
+pdf -> pdf : formatReport()
+note right : default hook implementation
+pdf -> pdf : export()
+deactivate pdf
+demo -> excel : new ExcelReport()
+demo -> excel : generate()
+activate excel
+excel -> excel : fetchData()
+excel -> excel : processData()
+excel -> excel : formatReport()
+note right : overridden for Excel styles
+excel -> excel : export()
+deactivate excel
+@enduml

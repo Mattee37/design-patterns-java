@@ -1,0 +1,8 @@
+@startuml
+actor Client
+rectangle "Device Remote Control" {
+  Client --> (Toggle device power)
+  Client --> (Adjust device volume)
+  Client --> (Control any device with the same remote)
+}
+@enduml

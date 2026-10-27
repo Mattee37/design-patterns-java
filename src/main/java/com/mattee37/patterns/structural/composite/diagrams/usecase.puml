@@ -1,0 +1,9 @@
+@startuml
+actor Client
+rectangle "File System" {
+  Client --> (Add item to folder)
+  Client --> (Print file tree)
+  Client --> (Compute total size)
+  (Print file tree) ..> (Add item to folder) : <<include>>
+}
+@enduml

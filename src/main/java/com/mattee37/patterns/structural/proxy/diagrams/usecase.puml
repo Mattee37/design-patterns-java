@@ -1,0 +1,8 @@
+@startuml
+actor Client
+rectangle "Image Gallery" {
+  Client --> (Create proxy without loading)
+  Client --> (Display image)
+  (Display image) ..> (Create proxy without loading) : <<include>>
+}
+@enduml

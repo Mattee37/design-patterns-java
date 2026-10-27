@@ -1,0 +1,11 @@
+@startuml
+actor Client
+rectangle "Shape Operations" {
+  (Calculate shape areas) as uc1
+  (Draw shapes) as uc2
+  (Add a new operation via visitor) as uc3
+}
+Client --> uc1
+Client --> uc2
+Client --> uc3
+@enduml

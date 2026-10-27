@@ -1,0 +1,18 @@
+@startuml
+interface MediaPlayer {
+  +play(filename: String)
+}
+interface LegacyAudioPlayer {
+  +playMp3(filename: String)
+}
+class AudioPlayerAdapter {
+  -legacyPlayer: LegacyAudioPlayer
+  +play(filename: String)
+}
+class OldMp3Player {
+  +playMp3(filename: String)
+}
+MediaPlayer <|.. AudioPlayerAdapter
+LegacyAudioPlayer <|.. OldMp3Player
+AudioPlayerAdapter *-- LegacyAudioPlayer : wraps
+@enduml

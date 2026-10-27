@@ -1,0 +1,28 @@
+@startuml
+interface Memento {
+  +getState(): String
+  +getDate(): String
+}
+class EditorMemento <<record>> {
+  +state: String
+  +date: Instant
+  +getState(): String
+  +getDate(): String
+}
+class Editor {
+  -content: String
+  +type(text: String)
+  +getContent(): String
+  +save(): Memento
+  +restore(memento: Memento)
+}
+class History {
+  -mementos: Deque<Memento>
+  +push(memento: Memento)
+  +pop(): Optional<Memento>
+}
+Memento <|.. EditorMemento
+Editor ..> EditorMemento : creates in save()
+Editor --> Memento : reads state in restore()
+History *-- Memento : undo stack
+@enduml
